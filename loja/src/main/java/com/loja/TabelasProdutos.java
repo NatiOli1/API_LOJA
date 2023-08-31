@@ -22,4 +22,16 @@ public class TabelasProdutos {
         this.produtos.add(lapis);
         this.produtos.add(borracha);
     }
+
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    /**
+     * Métoso que retorna todos os produtos da lista
+     * @return
+     */
+    public List<Produto> buscarTodosOsProdutos(){
+        return this.getProdutos();
+    }
 }
