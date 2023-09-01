@@ -29,9 +29,49 @@ public class TabelasProdutos {
 
     /**
      * Métoso que retorna todos os produtos da lista
-     * @return
      */
+
     public List<Produto> buscarTodosOsProdutos(){
         return this.getProdutos();
+    }
+
+    /**
+     * Método que buscar um produto pelo seu id
+     * Caso não
+     * @param produtoId
+     * @return
+     */
+    public  Produto buscarProdutoPeloId(int produtoId){
+        Produto produtoProcurado = null;
+        for (Produto p: this.produtos){
+            if (p.getId() == produtoId){
+                produtoProcurado = p;
+                break;
+            }
+        }
+        return  produtoProcurado;
+    }
+
+    public Produto cadastrarNovoProduto(Produto novoProduto){
+        int ultimoIndex = this.produtos.size() - 1;
+        Produto ultimoProduto = this.produtos.get(ultimoIndex);
+        int proximoId = ultimoProduto.getId() + 1;
+        novoProduto.setId(proximoId);
+        this.produtos.add(novoProduto);
+        return novoProduto;
+    }
+
+    public  void atualizarProduto(int produtoId, Produto produtoAtualizar){
+        Produto produtoProcurado = this.buscarProdutoPeloId(produtoId);
+        if (produtoProcurado != null){
+            produtoProcurado.setNome(produtoAtualizar.getNome());
+            produtoProcurado.setDescricao(produtoAtualizar.getDescricao());
+            produtoProcurado.setValorUnitario(produtoAtualizar.getValorUnitario());
+        }
+    }
+
+    public void removerProduto(int produtoId){
+        Produto produtoRemover = this.buscarProdutoPeloId(produtoId);
+        this.produtos.remove(produtoRemover);
     }
 }
